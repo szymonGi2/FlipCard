@@ -1,75 +1,44 @@
-# React + TypeScript + Vite
+# Programming Flip Cards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple flashcard app for practicing programming basics, built with React, TypeScript, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+Click a card to reveal its answer. Click again to return to the question. Each card flips independently with a 3D animation. You can also focus a card with Tab and flip it with Enter or Space.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Getting started
 
-## React Compiler
+Install Node.js and npm, then run these commands in the project folder:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL shown in the terminal.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Available commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server. |
+| `npm run build` | Check TypeScript and build the app into `dist/`. |
+| `npm run preview` | Preview the production build after running the build command. |
+| `npm run lint` | Check the code with ESLint. |
 
+## Adding questions
+
+Add an object to the `flipCards` array in `src/App.tsx`. Each card needs a unique `id`, a `question`, and an `answer`:
+
+```tsx
+{
+  id: "id-9",
+  question: "What does the useState hook do in React?",
+  answer: "It adds state to a component and provides a function to update it."
+}
 ```
+
+## Main files
+
+- `src/App.tsx` — questions and card layout.
+- `src/components/Card.tsx` — card content and flip interaction.
+- `src/card.ts` — the flashcard TypeScript interface.
+- `src/index.css` — Tailwind CSS import.
